@@ -25,5 +25,11 @@ def worker():
 
     return data
 
+def main():
+
+    #Global Variables init
+    config.init()
+
 if __name__ == '__main__':
+    main()
     app.run()
