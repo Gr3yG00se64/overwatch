@@ -1,6 +1,7 @@
 
 #Local Dependencies
 import zlogger
+import config
 
 #Package Dependencies
 
@@ -16,14 +17,12 @@ def output():
     print('Test Worked')
     return 'Hello World'
 
-@app.route('/logging', methods = ['POST'])
+@app.route('/logging')
 def worker():
-    data = request.get_json()
-
     # Call Archiver
     zlogger.archive_logs()
 
-    return data
+    return 'Process Completed'
 
 def main():
 
