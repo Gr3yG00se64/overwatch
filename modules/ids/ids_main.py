@@ -24,8 +24,7 @@ def main():
     ##Set up DB for NetMap Devices
     netmapDB = connection["netmap"]
     netmapCollection = netmapDB["netmaps"]
-    print(netmapCollection)
-
+    
     urls = parsezeek.getHosts()
     badUrls = detect.checkURLS(urls)
 
