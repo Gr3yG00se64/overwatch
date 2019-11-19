@@ -15,11 +15,16 @@ def main():
 
     #URI
     uri = 'mongodb://localhost:27017'
-
-    #Set Up mongodb
     connection = MongoClient(uri)
-    db = connection["alerts"]
-    collection = db["alerts"]
+
+    #Set Up DB for Alerts
+    alertDB = connection["alerts"]
+    alertCollection = alertDB["alerts"]
+
+    ##Set up DB for NetMap Devices
+    netmapDB = connection["netmap"]
+    netmapCollection = netmapDB["netmaps"]
+    print(netmapCollection)
 
     urls = parsezeek.getHosts()
     badUrls = detect.checkURLS(urls)
@@ -28,7 +33,12 @@ def main():
         for badUrl in badUrls:
             desc = 'Traffic going to possible malicious url. Url: '+badUrl[0]+' is known for '+badUrl[1]+' attacks.'
             post = {"modID": config.mod_id, "description": desc, "severity": "Medium" }
-            collection.insert_one(post)
+            alertCollection.insert_one(post)
+
+    #Testing Netmap Purposes
+    '''devices = netmapCollection.find()
+    for device in devices:
+        print(device)'''
 
     #READ FROM MONGO
     #items = collection.find()
