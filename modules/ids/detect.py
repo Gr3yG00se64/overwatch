@@ -11,9 +11,9 @@ def checkURLS(urls):
     badEntries = []
     safeURL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
 
-    for url in urls:
-        entries.append({'url': 'https://'+url})
-
+    #for url in urls:
+        #entries.append({'url': 'https://'+url})
+    entries.append('https://testsafebrowsing.appspot.com/s/malware.html')
     payload = {'client': {'clientId': "mycompany", 'clientVersion': "0.1"},
         'threatInfo': {'threatTypes': ["SOCIAL_ENGINEERING", "MALWARE"],
                        'platformTypes': ["ANY_PLATFORM"],
@@ -40,5 +40,5 @@ def checkURLS(urls):
             badEntries.append([match.get('threat').get('url'), match.get('threatType')])
             #print(match.get('threatType'))
             #print(match.get('threat').get('url'))
-
+        print(badEntries)
         return badEntries

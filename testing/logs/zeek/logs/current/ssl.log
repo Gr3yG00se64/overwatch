@@ -1,0 +1,2 @@
+{"ts":1574144350.400786,"uid":"CGocNVal2NqUi73X","id.orig_h":"192.168.1.101","id.orig_p":40866,"id.resp_h":"91.189.92.41","id.resp_p":443,"version":"TLSv12","cipher":"TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","resumed":false,"established":false}
+{"ts":1574144349.896472,"uid":"CiKSpviXzS4XmIxL7","id.orig_h":"192.168.1.101","id.orig_p":41810,"id.resp_h":"91.189.92.20","id.resp_p":443,"version":"TLSv12","cipher":"TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256","resumed":false,"established":false}
