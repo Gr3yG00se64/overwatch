@@ -11,4 +11,4 @@ def init():
     zeek_log_dir = zeek_dir + 'logs'
 
     ##
-    web_path = '/Users/joshuageise/Projects/overwatch_dev/web/overwatch-web-backend/data/log'
+    web_path = '/home/overwatch/overwatchWeb/server/routes/api/data/'
