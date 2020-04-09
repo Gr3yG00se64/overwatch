@@ -13,4 +13,5 @@ def main():
     archive_logs()
 
 if __name__ == "__main__":
+    config.init()
     main()
