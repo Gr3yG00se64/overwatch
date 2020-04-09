@@ -7,7 +7,7 @@ def init():
 
 
     ##
-    zeek_dir = '/Users/joshuageise/Projects/overwatch_dev/zeek/'
+    zeek_dir = '/usr/local/zeek'
     zeek_log_dir = zeek_dir + 'logs'
 
     ##

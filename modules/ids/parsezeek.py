@@ -15,6 +15,8 @@ def getHosts():
     #ssl --> server_name
 
     #http --> host:
+
+    #HTTP Log
     if (os.path.exists(config.zeek_log_dir+'http.log')):
         with open(config.zeek_log_dir+'http.log') as host_file:
             for line in host_file:
@@ -22,8 +24,9 @@ def getHosts():
                 if url not in urls:
                     urls.append(url)
 
+    #SSL Log 
     if (os.path.exists(config.zeek_log_dir+'ssl.log')):
-        with open(config.zeek_log_dir+'http.log') as host_file:
+        with open(config.zeek_log_dir+'ssl.log') as host_file:
             for line in host_file:
                 url = eval((line.split(':')[9]).split(',')[0])
                 if url not in urls:
