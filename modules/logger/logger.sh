@@ -4,7 +4,7 @@
 
 #Path Variables
 zeek_path="/usr/local/zeek"
-web_path="/home/overwatch/overwatchWeb/server/routes/api/data/logs.zip"
+web_path="/home/overwatch/overwatchWeb/server/routes/api/data/log.zip"
 
 #Change to zeek directory
 cd $zeek_path
