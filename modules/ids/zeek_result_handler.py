@@ -13,13 +13,10 @@ def http_to_ip(http_results):
     ip_list = []
 
     for result in http_results:
-        if result.get('origIP') not in ip_list:
-            ip_list.append(result.get('origIP'))
+        if result.get('origIP').strip('"') not in ip_list:
+            ip_list.append(result.get('origIP').strip('"'))
 
-        if result.get('respIP') not in ip_list:
-            ip_list.append(result.get('respIP'))
+        if result.get('respIP').strip('"') not in ip_list:
+            ip_list.append(result.get('respIP').strip('"'))
 
     return ip_list
-
-#Finds malicious results
-#def extract_http_alert_info(badURLs):

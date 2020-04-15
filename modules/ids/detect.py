@@ -1,20 +1,21 @@
 
 ## Local Dependencies
 import config
+import alert_builder
 
 ## Package Dependencies
 import requests
 
 #Check for malicious URLs using Google Safebrowsing API
-def safebrowsing_check(http_results):
+def safebrowsing_check(urls):
 
 
     entries = []
-    badEntries = []
+    alerts = []
 
     for url in urls:
-        url.strip()
-        entries.append({'url': url})
+        url = url.strip('"')
+        entries.append({'url': str(url)})
 
     payload = {'client': {'clientId': "mycompany", 'clientVersion': "0.1"},
         'threatInfo': {'threatTypes': ["SOCIAL_ENGINEERING", "MALWARE"],
@@ -25,9 +26,8 @@ def safebrowsing_check(http_results):
     params = {'key': config.googleSafe_apikey}
     r = requests.post(config.googleSafeURL, params=params, json=payload)
 
-    #
     if not r.json():
-        return badEntries
+        return alerts
     else:
         #Response comes in as a dictionary, with an array value, with a dictionary inside
 
@@ -40,6 +40,6 @@ def safebrowsing_check(http_results):
         #Looping Through List
         if matches:
             for match in matches:
-                badEntries.append([match.get('threat').get('url'), match.get('threatType')])
+                alerts.append(alert_builder.alert_generator(match.get('threat').get('url'), match.get('threatType'), 'maliciousURL'))
 
-        return badEntries
+        return alerts

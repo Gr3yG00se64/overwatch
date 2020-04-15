@@ -4,6 +4,7 @@ import parsezeek
 import detect
 import db_handler
 import zeek_result_handler
+import alert_builder
 
 #Package Dependencies
 from pymongo import MongoClient
@@ -15,17 +16,20 @@ def main():
     config.init()
 
     #Retrive list of registered devices
-    db_handler.retrieve_regDevices()
+    regDevices = db_handler.retrieve_regDevices()
 
-    #Retrieve visited URLS from zeek logs
+    #Parse Zeek File
     http_results = parsezeek.http_parse()
 
-    #Retrieve Bad URLS determined by Google SafeBrowsing
-    #badUrls = detect.checkURLS(urls)
+    #Run detection methods
+    http_alerts = detect.safebrowsing_check(zeek_result_handler.http_to_url(http_results))
 
-    # Alerts
+    #Modify Alert Values for database insertion
+    alert_builder.modAlerts(http_alerts, http_results, regDevices)
 
-    zeek_result_handler.http_to_ip(http_results)
+    #Insert new Alerts into database
+    #db_handler.insert_alerts(http_alerts)
+    print(http_alerts)
 
 if __name__ == '__main__':
 	main()

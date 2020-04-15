@@ -4,7 +4,7 @@ import config
 #Package Dependencies
 from pymongo import MongoClient
 
-def insert_alerts(badUrls):
+def insert_alerts(alerts):
     #Establish DB Connection
     connection = MongoClient(config.mongoURI)
 
@@ -12,10 +12,10 @@ def insert_alerts(badUrls):
     alertDB = connection["alerts"]
     alertCollection = alertDB["alerts"]
 
-    if badUrls:
-        for badUrl in badUrls:
-            desc = 'Traffic going to possible malicious url. Url: '+badUrl[0]+' is known for '+badUrl[1]+' attacks.'
-            post = {"modID": config.mod_id, "description": desc, "severity": "Medium" }
+    if alerts:
+        for alert in alerts:
+            post = {"modID": config.mod_id, "description": alert.get('description'), "severity": alert.get('severity'),
+                    "threatType": alert.get('threatType') }
             alertCollection.insert_one(post)
 
 #Returns list of dictionaries that contained registered device information
