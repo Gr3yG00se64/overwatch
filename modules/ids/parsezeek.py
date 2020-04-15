@@ -4,29 +4,30 @@
 import config
 #Remote Dependencies
 import os
-import json
 
-def getHosts():
-    #http.log , ssl.log
+def http_parse():
+    #Prep Parser Value Location Variables
+    ts = 0
+    origIP = 2
+    origPort = 3
+    respIP = 4
+    respPort = 5
+    host = 8
 
-    urls = []
+    #Create list for
+    http_results = []
 
-    #http --> host:
-    #ssl --> server_name
-
-    #http --> host:
     if (os.path.exists(config.zeek_log_dir+'http.log')):
         with open(config.zeek_log_dir+'http.log') as host_file:
             for line in host_file:
-                url = eval((line.split(':')[9]).split(',')[0])
-                if url not in urls:
-                    urls.append(url)
+                base_split = line.split('\'')[0].split(',')
 
-    if (os.path.exists(config.zeek_log_dir+'ssl.log')):
-        with open(config.zeek_log_dir+'http.log') as host_file:
-            for line in host_file:
-                url = eval((line.split(':')[9]).split(',')[0])
-                if url not in urls:
-                    urls.append(url)
+                http_results.append({'ts': base_split[ts].split(':')[1],
+                                'origIP': base_split[origIP].split(':')[1],
+                                'origPort': base_split[origPort].split(':')[1],
+                                'respIP': base_split[respIP].split(':')[1],
+                                'respPort': base_split[respPort].split(':')[1],
+                                'host': base_split[host].split(':')[1]
+                                })
 
-    return urls
+    return http_results

@@ -1,29 +1,31 @@
 
 ## Local Dependencies
-#import config
+import config
 
 ## Package Dependencies
 import requests
-import json
 
-def checkURLS(urls):
+#Check for malicious URLs using Google Safebrowsing API
+def safebrowsing_check(http_results):
+
+
     entries = []
     badEntries = []
-    safeURL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
 
-    #for url in urls:
-        #entries.append({'url': 'https://'+url})
-    entries.append('https://testsafebrowsing.appspot.com/s/malware.html')
+    for url in urls:
+        url.strip()
+        entries.append({'url': url})
+
     payload = {'client': {'clientId': "mycompany", 'clientVersion': "0.1"},
         'threatInfo': {'threatTypes': ["SOCIAL_ENGINEERING", "MALWARE"],
                        'platformTypes': ["ANY_PLATFORM"],
                        'threatEntryTypes': ["URL"],
                        'threatEntries': entries}}
-                       #'threatEntries': [{'url': "https://testsafebrowsing.appspot.com/s/phishing.html"}]}}
 
-    params = {'key': 'AIzaSyAn4zlbI5v4xc4jf51qd9WIcAVyNyesaTg'}
-    r = requests.post(safeURL, params=params, json=payload)
-    # Print response
+    params = {'key': config.googleSafe_apikey}
+    r = requests.post(config.googleSafeURL, params=params, json=payload)
+
+    #
     if not r.json():
         return badEntries
     else:
@@ -36,9 +38,8 @@ def checkURLS(urls):
         matches = response.get('matches')
 
         #Looping Through List
-        for match in matches:
-            badEntries.append([match.get('threat').get('url'), match.get('threatType')])
-            #print(match.get('threatType'))
-            #print(match.get('threat').get('url'))
-        print(badEntries)
+        if matches:
+            for match in matches:
+                badEntries.append([match.get('threat').get('url'), match.get('threatType')])
+
         return badEntries
