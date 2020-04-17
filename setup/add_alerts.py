@@ -17,7 +17,7 @@ data.append({
     'tags': []
 })
 
-data.appen({
+data.append({
 'ts': '1604053161.804296',
     'uid': 'C7Nzqy4J1H3f9JUDed',
     'id.orig_h': '192.168.1.10',
