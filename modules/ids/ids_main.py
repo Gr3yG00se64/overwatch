@@ -28,8 +28,8 @@ def main():
     alert_builder.modAlerts(http_alerts, http_results, regDevices)
 
     #Insert new Alerts into database
-    #db_handler.insert_alerts(http_alerts)
-    print(http_alerts)
+    db_handler.insert_alerts(http_alerts)
+    #print(http_alerts)
 
 if __name__ == '__main__':
 	main()
