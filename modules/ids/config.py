@@ -23,7 +23,7 @@ def init():
     mongoURI = 'mongodb://localhost:27017'
 
     #Zeek Configuration
-    zeek_dir = '/usr/local/zeek'
+    zeek_dir = '/usr/local/zeek/'
     zeek_log_dir = zeek_dir + 'logs/current/'
 
     #Zeek Dev Configuration
