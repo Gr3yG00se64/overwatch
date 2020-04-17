@@ -16,7 +16,7 @@ def init():
 
     #Alert Variables
     alertSeverityLevels = ['Low', 'Medium', 'High']
-    alertBreakdown = [{'alertType': 'maliciousURL', 'severity': 0, 'Description': 'Found traffic to malicious website'}
+    alertBreakdown = [{'alertType': 'maliciousURL', 'severity': 1, 'Description': 'Found traffic to malicious website'}
                         ]
 
     #MongoDB Configuration

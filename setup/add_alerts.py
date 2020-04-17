@@ -17,7 +17,7 @@ data.append({
     'request_body_len': '0,',
     'tags': []
 })
-
+'''
 data.append({
 'ts': '1604053161.804296',
     'uid': 'C7Nzqy4J1H3f9JUDed',
@@ -33,7 +33,7 @@ data.append({
     'request_body_len': '0',
     'tags': []
 })
-
+'''
 #with open('/Users/joshuageise/Projects/overwatch/setup/http.log', 'w+') as outfile:
 with open('/usr/local/zeek/logs/current/http.log', 'w+') as outfile:
     json.dump(data, outfile)
