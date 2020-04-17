@@ -14,8 +14,8 @@ def insert_alerts(alerts):
 
     if alerts:
         for alert in alerts:
-            post = {"modID": config.mod_id, "description": alert.get('description'), "severity": alert.get('severity'),
-                    "threatType": alert.get('threatType') }
+            post = {"modID": config.mod_id, "description": alert.get('description'), "severity": alert.get('severity')}
+                    #,"threatType": alert.get('threatType') }
             alertCollection.insert_one(post)
 
 #Returns list of dictionaries that contained registered device information
