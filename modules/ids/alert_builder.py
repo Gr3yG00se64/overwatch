@@ -21,23 +21,25 @@ def setAlertSeverity(alert, zeek_results, regDevices):
 
         #Check to see if malicious URL activity was done by a registered device
         for device in regDevices:
-            if device.get('ip') in ip_list:
+            if (device.get('ip') == alert.get('sendIP')) or (device.get('ip') == alert.get('respIP')):
                 #Check if severity level is already maximum
                 if config.alertBreakdown[0].get('severity') < len(config.alertSeverityLevels)+1:
                     alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')+1]
-
-        #alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')]
+            else:
+                alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')]
 
 def setAlertDescription(alert):
 
     if alert.get('alertType') == 'maliciousURL':
         alert['description'] = 'Device connected to Malicious URL: '+alert.get('alertInfo')
 
-def alert_generator(alertInfo, threatType, alertType):
+def alert_generator(alertInfo, threatType, alertType, sendIP, respIP):
     return {
         'alertInfo': alertInfo,
         'threatType': threatType,
         'alertType': alertType,
         'severity': '',
-        'description': ''
+        'description': '',
+        'sendIP': sendIP,
+        'respIP': respIP
     }

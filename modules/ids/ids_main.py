@@ -22,14 +22,14 @@ def main():
     http_results = parsezeek.http_parse()
 
     #Run detection methods
-    http_alerts = detect.safebrowsing_check(zeek_result_handler.http_to_url(http_results))
+    http_alerts = detect.safebrowsing_check(http_results)
 
     #Modify Alert Values for database insertion
     alert_builder.modAlerts(http_alerts, http_results, regDevices)
 
     #Insert new Alerts into database
-    db_handler.insert_alerts(http_alerts)
-    #print(http_alerts)
+    #db_handler.insert_alerts(http_alerts)
+    print(http_alerts)
 
 if __name__ == '__main__':
 	main()

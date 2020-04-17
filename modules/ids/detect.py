@@ -2,13 +2,15 @@
 ## Local Dependencies
 import config
 import alert_builder
+import zeek_result_handler
 
 ## Package Dependencies
 import requests
 
 #Check for malicious URLs using Google Safebrowsing API
-def safebrowsing_check(urls):
+def safebrowsing_check(http_results):
 
+    urls = zeek_result_handler.http_to_url(http_results)
 
     entries = []
     alerts = []
@@ -37,9 +39,24 @@ def safebrowsing_check(urls):
         #Getting List
         matches = response.get('matches')
 
+        matched_alerts = []
+        bad_urls = []
+
         #Looping Through List
         if matches:
             for match in matches:
-                alerts.append(alert_builder.alert_generator(match.get('threat').get('url'), match.get('threatType'), 'maliciousURL'))
+                if match.get('threat').get('url') not in bad_urls:
+
+                    bad_urls.append(match.get('threat').get('url'))
+                    for result in http_results:
+                        if (result.get('host') == match.get('threat').get('url')):
+                            newDict = {'sendIP': result.get('origIP'), 'recIP': result.get('respIP')}
+
+                            if newDict not in matched_alerts:
+                                matched_alerts.append({'sendIP': result.get('origIP'), 'recIP': result.get('respIP')})
+
+                    for matchesFound in matched_alerts:
+                        alerts.append(alert_builder.alert_generator(match.get('threat').get('url'), match.get('threatType'), 'maliciousURL',
+                                                                    matchesFound.get('sendIP'), matchesFound.get('respIP')))
 
         return alerts
