@@ -14,6 +14,7 @@ def http_parse():
     if (os.path.exists(config.zeek_log_dir + 'http.log')):
         with open(config.zeek_log_dir + 'http.log', 'r') as f:
             http_log = json.load(f)
+            print(http_log)
 
             for result in http_log:
                 http_results.append({'ts': result['ts'],
