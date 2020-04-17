@@ -20,7 +20,7 @@ def main():
 
     #Parse Zeek File
     http_results = parsezeek.http_parse()
-
+    print(http_results)
     #Run detection methods
     http_alerts = detect.safebrowsing_check(zeek_result_handler.http_to_url(http_results))
 
