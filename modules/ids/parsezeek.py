@@ -23,5 +23,4 @@ def http_parse():
                                      'respPort': result['id.resp_p'],
                                      'host': result['host']
                                      })
-
     return http_results

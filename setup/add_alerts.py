@@ -35,5 +35,5 @@ data.append({
 })
 
 #with open('/Users/joshuageise/Projects/overwatch/setup/http.log', 'w+') as outfile:
-with open('/usr/local/zeek/logs/current/http.log', 'w+') as outfile:
+with open('/Users/joshuageise/Projects/overwatch_dev/zeek/logs/current/http.log', 'w+') as outfile:
     json.dump(data, outfile)

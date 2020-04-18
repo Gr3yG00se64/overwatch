@@ -46,17 +46,16 @@ def safebrowsing_check(http_results):
         if matches:
             for match in matches:
                 if match.get('threat').get('url') not in bad_urls:
-
                     bad_urls.append(match.get('threat').get('url'))
+
                     for result in http_results:
                         if (result.get('host') == match.get('threat').get('url')):
                             newDict = {'sendIP': result.get('origIP'), 'recIP': result.get('respIP')}
-
                             if newDict not in matched_alerts:
                                 matched_alerts.append({'sendIP': result.get('origIP'), 'recIP': result.get('respIP')})
 
-                    for matchesFound in matched_alerts:
-                        alerts.append(alert_builder.alert_generator(match.get('threat').get('url'), match.get('threatType'), 'maliciousURL',
+            for matchesFound in matched_alerts:
+                    alerts.append(alert_builder.alert_generator(match.get('threat').get('url'), match.get('threatType'), 'maliciousURL',
                                                                     matchesFound.get('sendIP'), matchesFound.get('respIP')))
 
         return alerts
