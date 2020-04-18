@@ -13,7 +13,12 @@ def http_parse():
 
     if (os.path.exists(config.zeek_log_dir + 'http.log')):
         with open(config.zeek_log_dir + 'http.log', 'r') as f:
-            http_log = json.load(f)
+            json_string = f.read()
+
+            if json_string[0] != '[':
+                json_string = '[' + json_string + ']'
+
+            http_log = json.loads(json_string)
 
             for result in http_log:
                 http_results.append({'ts': result['ts'],
