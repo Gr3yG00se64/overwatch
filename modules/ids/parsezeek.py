@@ -16,13 +16,14 @@ def http_parse():
             for line in f:
                 http_log_result = json.loads(line)
 
-                http_results.append({'ts': http_log_result['ts'],
-                                     'origIP': http_log_result['id.orig_h'],
-                                     'origPort': http_log_result['id.orig_p'],
-                                     'respIP': http_log_result['id.resp_h'],
-                                     'respPort': http_log_result['id.resp_p'],
-                                     'host': http_log_result['host']+http_log_result['uri']
-                                     })
+                if http_log_result.get('host'):
+                    http_results.append({'ts': http_log_result['ts'],
+                                         'origIP': http_log_result['id.orig_h'],
+                                         'origPort': http_log_result['id.orig_p'],
+                                         'respIP': http_log_result['id.resp_h'],
+                                         'respPort': http_log_result['id.resp_p'],
+                                         'host': http_log_result['host']+http_log_result['uri']
+                                         })
     return http_results
 
 def notice_parse():
