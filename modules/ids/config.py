@@ -29,8 +29,8 @@ def init():
     mongoURI = 'mongodb://localhost:27017'
 
     #Zeek Configuration
-    #zeek_dir = '/usr/local/zeek/'
-    #zeek_log_dir = zeek_dir + 'logs/current/'
+    zeek_dir = '/usr/local/zeek/'
+    zeek_log_dir = zeek_dir + 'logs/current/'
 
     #Web Data Directory Configuration
     web_data_dir = '/home/overwatch/overwatchWeb/server/routes/api/data/'
