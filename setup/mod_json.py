@@ -38,5 +38,5 @@ data['modules'].append({
     'id': 5
 })
 
-with open('/Users/joshuageise/Projects/overwatch_dev/web/overwatch_web_backend/data/mod_data.json', 'w') as outfile:
+with open('/Users/joshuageise/Projects/overwatch_dev/overwatchWeb/server/routes/api/data/mod_data.json', 'w') as outfile:
     json.dump(data, outfile)

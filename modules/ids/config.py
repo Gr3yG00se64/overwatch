@@ -1,4 +1,8 @@
-##
+#Local Dependencies
+
+#Package Dependencies
+import os
+import json
 
 def init():
 
@@ -10,27 +14,44 @@ def init():
     global mongoURI
     global alertSeverityLevels
     global alertBreakdown
+    global web_data_dir
 
     #Overwatch Module Configuration
     mod_id = 2
 
     #Alert Variables
-    alertSeverityLevels = ['Low', 'Medium', 'High']
-    alertBreakdown = [{'alertType': 'maliciousURL', 'severity': 0, 'Description': 'Found traffic to malicious website'}
-                        ]
+    alertSeverityLevels = ['LOW', 'MEDIUM', 'HIGH']
+    alertBreakdown = [{'alertType': 'maliciousURL', 'severity': 0, 'description': 'Found traffic to malicious website'},
+                      {'alertType': 'SSHBruteforce', 'severity': 2, 'description': 'Malicious Login Attempts'},
+                      {'alertType': 'PortScan', 'severity': 1, 'description': 'Malicious Reconnaissance'}]
 
     #MongoDB Configuration
     mongoURI = 'mongodb://localhost:27017'
 
     #Zeek Configuration
-    zeek_dir = '/usr/local/zeek/'
-    zeek_log_dir = zeek_dir + 'logs/current/'
+    #zeek_dir = '/usr/local/zeek/'
+    #zeek_log_dir = zeek_dir + 'logs/current/'
 
-    #Zeek Dev Configuration
+    #Web Data Directory Configuration
+    web_data_dir = '/home/overwatch/overwatchWeb/server/routes/api/data/'
+
+    #Dev Zeek Configuration
     #zeek_dir = '/Users/joshuageise/Projects/overwatch_dev/zeek/'
     #zeek_log_dir = zeek_dir + 'logs/current/'
 
+    #Dev Web Data Directory Configuration
+    #web_data_dir = '/Users/joshuageise/Projects/overwatch_dev/overwatchWeb/server/routes/api/data/'
 
     ##Google Safebrowsing Configuration
-    googleSafe_apikey = 'AIzaSyAn4zlbI5v4xc4jf51qd9WIcAVyNyesaTg'
+    google_safe_name = 'googlesafebrowsing'
+    googleSafe_apikey = '' #AIzaSyAn4zlbI5v4xc4jf51qd9WIcAVyNyesaTg
     googleSafeURL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
+
+    #Retrive All API Keys
+    if (os.path.exists(web_data_dir + 'apikeys.json')):
+        with open(web_data_dir + 'apikeys.json', 'r') as f:
+            api_keys = json.load(f)
+
+            for key in api_keys.get('apikeys'):
+                if key.get('name') == google_safe_name:
+                    googleSafe_apikey = key.get('key')

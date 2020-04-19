@@ -14,7 +14,9 @@ def modAlerts(alert_results, zeek_results, regDevices):
 def setAlertSeverity(alert, zeek_results, regDevices):
 
     #Complete checks based off alert type
-    if alert.get('alertType') == 'maliciousURL':
+
+    #Malicious URL Check: Index 0 in alert breakdown array
+    if alert.get('alertType') == config.alertBreakdown[0].get('alertType'):
 
         #Get all registered device IPs
         ip_list = zeek_result_handler.http_to_ip(zeek_results)
@@ -28,10 +30,29 @@ def setAlertSeverity(alert, zeek_results, regDevices):
             else:
                 alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')]
 
+    # SSH Bruteforce Check: Index 1 in alert breakdown array
+    elif alert.get('alertType') == config.alertBreakdown[1].get('alertType'):
+        alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[1].get('severity')]
+
+    # Port Scan Check: Index 2 in alert breakdown array
+    elif alert.get('alertType') == config.alertBreakdown[2].get('alertType'):
+        alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[2].get('severity')]
+
 def setAlertDescription(alert):
 
-    if alert.get('alertType') == 'maliciousURL':
-        alert['description'] = 'Device connected to Malicious URL: '+alert.get('alertInfo')
+    #Set Description based off of Threat Type
+
+    # Malicious URL Check: Index 0 in alert breakdown array
+    if alert.get('alertType') == config.alertBreakdown[0].get('alertType'):
+        alert['description'] = config.alertBreakdown[0].get('description')
+
+    # SSH Bruteforce Check: Index 1 in alert breakdown array
+    elif alert.get('alertType') == config.alertBreakdown[1].get('alertType'):
+        alert['description'] = config.alertBreakdown[1].get('description')
+
+    # Port Scan Check: Index 2 in alert breakdown array
+    elif alert.get('alertType') == config.alertBreakdown[2].get('alertType'):
+        alert['description'] = config.alertBreakdown[2].get('description')
 
 def alert_generator(alertInfo, threatType, alertType, sendIP, respIP):
     return {
