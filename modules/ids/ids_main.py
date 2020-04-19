@@ -12,6 +12,11 @@ def main():
     #Set Global Variables
     config.init()
 
+    #Check if Module is enabled, End program if disabled
+    if not config.mod_enabled:
+        print("IDS Module is Disabled")
+        return
+
     #Local Variable Setup
     alerts = []
 
@@ -27,7 +32,7 @@ def main():
     alerts = detect.zeekScript_check(notice_results, alerts)
 
     #Modify Alert Values for database insertion
-    alert_builder.modAlerts(alerts, http_results, regDevices)
+    alerts = alert_builder.modAlerts(alerts, http_results, regDevices)
 
     #Insert new Alerts into database
     db_handler.insert_alerts(alerts)

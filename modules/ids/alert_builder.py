@@ -4,11 +4,13 @@ import zeek_result_handler
 
 #Package Dependencies
 
-def modAlerts(alert_results, zeek_results, regDevices):
+def modAlerts(alerts, zeek_results, regDevices):
 
-    for alert in alert_results:
+    for alert in alerts:
         setAlertSeverity(alert, zeek_results, regDevices)
         setAlertDescription(alert)
+
+    return alerts
 
 #Alert Results, Associated IP, Registered Devices, Type of Alert
 def setAlertSeverity(alert, zeek_results, regDevices):
@@ -18,17 +20,18 @@ def setAlertSeverity(alert, zeek_results, regDevices):
     #Malicious URL Check: Index 0 in alert breakdown array
     if alert.get('alertType') == config.alertBreakdown[0].get('alertType'):
 
-        #Get all registered device IPs
-        ip_list = zeek_result_handler.http_to_ip(zeek_results)
-
         #Check to see if malicious URL activity was done by a registered device
-        for device in regDevices:
-            if (device.get('ip') == alert.get('sendIP')) or (device.get('ip') == alert.get('respIP')):
-                #Check if severity level is already maximum
-                if config.alertBreakdown[0].get('severity') < len(config.alertSeverityLevels)+1:
-                    alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')+1]
-            else:
-                alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')]
+
+        if regDevices:
+            for device in regDevices:
+                if (device.get('ip') == alert.get('sendIP')) or (device.get('ip') == alert.get('respIP')):
+                    #Check if severity level is already maximum
+                    if config.alertBreakdown[0].get('severity') < len(config.alertSeverityLevels)+1:
+                        alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')+1]
+                else:
+                    alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')]
+        else:
+            alert['severity'] = config.alertSeverityLevels[config.alertBreakdown[0].get('severity')]
 
     # SSH Bruteforce Check: Index 1 in alert breakdown array
     elif alert.get('alertType') == config.alertBreakdown[1].get('alertType'):
