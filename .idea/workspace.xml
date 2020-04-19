@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f301e25-a9ac-41f2-a1eb-2d7644b12f71" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/modules/ids/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ids/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modules/ids/detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/modules/ids/detect.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,10 +52,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/ids/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
+            <state relative-caret-position="-33">
               <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
               <folding>
                 <element signature="e#43#52#0" expanded="true" />
@@ -104,15 +104,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/ids/detect.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
-              <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="e#23#36#0" expanded="true" />
-                <marker date="1587275550449" expanded="true" signature="2358:2359" ph="..." />
-                <marker date="1587275550449" expanded="true" signature="2358:3204" ph="..." />
+                <marker date="1587313649497" expanded="true" signature="2339:2340" ph="..." />
+                <marker date="1587313649497" expanded="true" signature="2339:3185" ph="..." />
               </folding>
             </state>
           </provider>
@@ -121,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/ids/ids_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="384">
+              <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
               <folding>
                 <element signature="e#20#33#0" expanded="true" />
               </folding>
@@ -198,9 +198,9 @@
         <option value="$PROJECT_DIR$/setup/mod_json.py" />
         <option value="$PROJECT_DIR$/modules/ids/alert_builder.py" />
         <option value="$PROJECT_DIR$/modules/ids/parsezeek.py" />
-        <option value="$PROJECT_DIR$/modules/ids/detect.py" />
         <option value="$PROJECT_DIR$/modules/ids/ids_main.py" />
         <option value="$PROJECT_DIR$/modules/ids/config.py" />
+        <option value="$PROJECT_DIR$/modules/ids/detect.py" />
       </list>
     </option>
   </component>
@@ -392,18 +392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ids/detect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding>
-            <element signature="e#23#36#0" expanded="true" />
-            <marker date="1587275550449" expanded="true" signature="2358:2359" ph="..." />
-            <marker date="1587275550449" expanded="true" signature="2358:3204" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/ids/zeek_result_handler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -426,22 +414,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modules/ids/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+          <folding>
+            <element signature="e#43#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/ids/ids_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="384">
+          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
           <folding>
             <element signature="e#20#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/ids/config.py">
+    <entry file="file://$PROJECT_DIR$/modules/ids/detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
+        <state relative-caret-position="237">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           <folding>
-            <element signature="e#43#52#0" expanded="true" />
+            <element signature="e#23#36#0" expanded="true" />
+            <marker date="1587313649497" expanded="true" signature="2339:2340" ph="..." />
+            <marker date="1587313649497" expanded="true" signature="2339:3185" ph="..." />
           </folding>
         </state>
       </provider>

@@ -29,7 +29,7 @@ def safebrowsing_check(http_results, alerts):
 
     params = {'key': config.googleSafe_apikey}
     r = requests.post(config.googleSafeURL, params=params, json=payload)
-    print(r.json())
+
     if not r.json():
         return alerts
     else:
