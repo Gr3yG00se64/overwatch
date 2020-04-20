@@ -15,16 +15,16 @@ def init():
     mongoURI = 'mongodb://localhost:27017'
 
     #Web Data Directory Configuration
-    #web_data_dir = '/home/overwatch/overwatchWeb/server/routes/api/data/'
+    web_data_dir = '/home/overwatch/overwatchWeb/server/routes/api/data/'
 
     #Tmp Directory
-    #tmp_dir = ''
+    tmp_dir = '/home/overwatch/overwatch/modules/maintenance/temp/'
 
     #Dev Web Data Directory Configuration
-    web_data_dir = '/Users/joshuageise/Projects/overwatch_dev/overwatchWeb/server/routes/api/data/'
+    #web_data_dir = '/Users/joshuageise/Projects/overwatch_dev/overwatchWeb/server/routes/api/data/'
 
     #Dev Tmp Directory
-    tmp_dir = '/Users/joshuageise/Projects/overwatch/modules/maintenance/temp/'
+    #tmp_dir = '/Users/joshuageise/Projects/overwatch/modules/maintenance/temp/'
 
     #Default Alert Expiry
     alertExpiry = 0
