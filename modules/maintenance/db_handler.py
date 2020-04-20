@@ -4,7 +4,7 @@ import config
 #Package Dependencies
 from pymongo import MongoClient
 
-def insert_alerts(alerts):
+def remove_alerts(alerts):
     #Establish DB Connection
     connection = MongoClient(config.mongoURI)
 
@@ -14,10 +14,32 @@ def insert_alerts(alerts):
 
     if alerts:
         for alert in alerts:
-            post = {"modID": config.mod_id, "description": alert.get('description'), "severity": alert.get('severity'),
-                    "alertInfo": alert.get('alertInfo'), "threatType": alert.get('threatType'), "date": alert.get('date')}
+            alertCollection.remove({'_id': alert.get('_id')})
 
-            alertCollection.insert_one(post)
+def retrieve_alerts():
+    alerts = []
+
+    # Establish DB Connection
+    connection = MongoClient(config.mongoURI)
+
+    # Retrieve names of all databases
+    dbNames = connection.list_database_names()
+
+    if 'alerts' in dbNames:
+        # Set Up DB for Alerts
+        alertDB = connection["alerts"]
+        alertCollection = alertDB["alerts"]
+
+        #Retrieve all alerts
+        db_alerts = alertCollection.find()
+
+        #Generate list of alerts
+        for alert in db_alerts:
+            alerts.append(alert)
+
+    return alerts
+
+
 
 #Returns list of dictionaries that contained registered device information
 def retrieve_regDevices():

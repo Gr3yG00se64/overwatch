@@ -8,7 +8,7 @@ import zeek_result_handler
 import requests
 
 #Alert Generator Format seen below:
-#(alertInfo, threatType, alertType, sendIP, respIP)
+#(alertInfo, threatType, alertType, sendIP, respIP, ts)
 
 #Check for malicious URLs using Google Safebrowsing API
 def safebrowsing_check(http_results, alerts):
@@ -53,14 +53,16 @@ def safebrowsing_check(http_results, alerts):
                     for result in http_results:
                         if (result.get('host') == match.get('threat').get('url')):
                             newDict = {'sendIP': result.get('origIP'), 'recIP': result.get('respIP'),
-                                        'url': match.get('threat').get('url'), 'threatType': match.get('threatType')}
+                                        'url': match.get('threat').get('url'), 'threatType': match.get('threatType'),
+                                       'ts': result.get('ts')}
 
                             if newDict not in matched_alerts:
                                 matched_alerts.append(newDict)
 
             for matchesFound in matched_alerts:
                     alerts.append(alert_builder.alert_generator(matchesFound.get('url'), matchesFound.get('threatType'),
-                                config.alertBreakdown[0].get('alertType'), matchesFound.get('sendIP'), matchesFound.get('respIP')))
+                                config.alertBreakdown[0].get('alertType'), matchesFound.get('sendIP'), matchesFound.get('respIP'),
+                                matchesFound.get('ts')))
 
         return alerts
 
@@ -73,11 +75,11 @@ def zeekScript_check(notice_results, alerts):
         # SSH Bruteforce Check: Index 1 in alert breakdown array
         if notice_alert.get('alertType') == config.alertBreakdown[1].get('alertType'):
             alerts.append(alert_builder.alert_generator(notice_alert.get('msg'), notice_alert.get('alertType'),
-                                config.alertBreakdown[1].get('alertType'), '', ''))
+                                config.alertBreakdown[1].get('alertType'), '', '', notice_alert.get('ts')))
 
         # Port Scan Check: Index 2 in alert breakdown array
         elif notice_alert.get('alertType') == config.alertBreakdown[2].get('alertType'):
             alerts.append(alert_builder.alert_generator(notice_alert.get('msg'), notice_alert.get('alertType'),
-                          config.alertBreakdown[2].get('alertType'), '', ''))
+                          config.alertBreakdown[2].get('alertType'), '', '', notice_alert.get('ts')))
 
     return alerts

@@ -30,18 +30,18 @@ def init():
     mongoURI = 'mongodb://localhost:27017'
 
     #Zeek Configuration
-    zeek_dir = '/usr/local/zeek/'
-    zeek_log_dir = zeek_dir + 'logs/current/'
-
-    #Web Data Directory Configuration
-    web_data_dir = '/home/overwatch/overwatchWeb/server/routes/api/data/'
-
-    #Dev Zeek Configuration
-    #zeek_dir = '/Users/joshuageise/Projects/overwatch_dev/zeek/'
+    #zeek_dir = '/usr/local/zeek/'
     #zeek_log_dir = zeek_dir + 'logs/current/'
 
+    #Web Data Directory Configuration
+    #web_data_dir = '/home/overwatch/overwatchWeb/server/routes/api/data/'
+
+    #Dev Zeek Configuration
+    zeek_dir = '/Users/joshuageise/Projects/overwatch_dev/zeek/'
+    zeek_log_dir = zeek_dir + 'logs/current/'
+
     #Dev Web Data Directory Configuration
-    #web_data_dir = '/Users/joshuageise/Projects/overwatch_dev/overwatchWeb/server/routes/api/data/'
+    web_data_dir = '/Users/joshuageise/Projects/overwatch_dev/overwatchWeb/server/routes/api/data/'
 
     ##Google Safebrowsing Configuration
     google_safe_name = 'googlesafebrowsing'
